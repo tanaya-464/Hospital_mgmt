@@ -19,6 +19,6 @@ public class PatientDTO {
     private long phone;
     private String email;
     private String password;
-    private List<Appointment> appointments;
+//    private List<Appointment> appointments;
 
 }

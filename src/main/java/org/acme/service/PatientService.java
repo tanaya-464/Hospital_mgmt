@@ -2,7 +2,9 @@ package org.acme.service;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import org.acme.dto.LoginDTO;
 import org.acme.dto.PatientDTO;
+import org.acme.entity.Doctor;
 import org.acme.entity.Patient;
 import org.acme.repositories.PatientRepository;
 import org.modelmapper.ModelMapper;
@@ -34,8 +36,7 @@ public class PatientService {
                 .collect(Collectors.toList());
     }
 
-    public void savePatient(PatientDTO patientDTO) {
-        Patient patient = modelMapper.map(patientDTO, Patient.class);
+    public void savePatient(Patient patient) {
         patientRepository.persist(patient);
     }
 
@@ -73,5 +74,14 @@ public class PatientService {
         if (patient != null) {
             patientRepository.delete(patient);
         }
+    }
+
+    public boolean validate(LoginDTO loginDTO) {
+        Patient patient=patientRepository.findByEmail(loginDTO.getEmail());
+        if(patient!=null
+                && loginDTO.getPassword().equals(patient.getPassword())){
+            return true;
+        }
+        return false;
     }
 }

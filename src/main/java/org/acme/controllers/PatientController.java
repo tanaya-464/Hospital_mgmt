@@ -7,6 +7,7 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.acme.dto.PatientDTO;
+import org.acme.entity.Patient;
 import org.acme.service.PatientService;
 import org.jboss.logging.annotations.Pos;
 
@@ -35,8 +36,8 @@ public class PatientController {
 
     @POST
     @Transactional
-    public Response savePatient(PatientDTO patientDTO) {
-        patientService.savePatient(patientDTO);
+    public Response savePatient(Patient patient) {
+        patientService.savePatient(patient);
         return Response.status(Response.Status.CREATED).build();
     }
 

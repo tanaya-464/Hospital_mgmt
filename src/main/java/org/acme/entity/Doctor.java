@@ -31,6 +31,15 @@ public class Doctor {
     @Lob
     private byte[] dp;
     private String location;
+    private long cost;
+
+    public long getCost() {
+        return cost;
+    }
+
+    public void setCost(long cost) {
+        this.cost = cost;
+    }
 
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true) // Add orphanRemoval if needed
     private List<Appointment> appointments;
@@ -159,5 +168,9 @@ public class Doctor {
                 '}';
     }
 
+    public void addAppointment(Appointment appointment) {
+        appointments.add(appointment);
+        appointment.setDoctor(this); // Set the booking reference in Passenger}
+    }
 }
 

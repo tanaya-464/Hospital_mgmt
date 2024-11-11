@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,7 +22,10 @@ public class Patient {
     private String email;
     private String password;
     @OneToMany(mappedBy = "patient", cascade = {CascadeType.PERSIST,CascadeType.ALL}, orphanRemoval = true) // Add orphanRemoval if needed
-    private List<Appointment> appointments;
-
+    private List<Appointment> appointments = new ArrayList<>();
+    public void addAppointment(Appointment appointment) {
+        appointments.add(appointment);
+        appointment.setPatient(this); // Set the booking reference in Passenger}
+    }
 
 }

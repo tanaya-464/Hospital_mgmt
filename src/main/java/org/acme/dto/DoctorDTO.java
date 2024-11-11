@@ -19,6 +19,7 @@ public class DoctorDTO {
     private LocalTime end_time;
     private String specialty;
     private int experience;
+    private long cost;
     private byte[] dp;
     private String location;
 

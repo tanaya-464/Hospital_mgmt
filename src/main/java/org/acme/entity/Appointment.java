@@ -13,15 +13,11 @@ public class Appointment  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long app_id;
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "appointment_seq")
-//    @SequenceGenerator(name = "appointment_seq", sequenceName = "appointment_sequence", allocationSize = 1)
 
     //@Temporal(TemporalType.TIMESTAMP)
     private LocalDate appointmentDate;
     private String slot;
-    private int cost;
-    private String status;
+    private String status = "pending";
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "patient_id", nullable = false)
@@ -58,13 +54,6 @@ public class Appointment  {
         this.slot = slot;
     }
 
-    public int getCost() {
-        return cost;
-    }
-
-    public void setCost(int cost) {
-        this.cost = cost;
-    }
 
     public String getStatus() {
         return status;
@@ -96,7 +85,6 @@ public class Appointment  {
 //                "app_id=" + app_id +
                 ", appointmentDate=" + appointmentDate +
                 ", slot='" + slot + '\'' +
-                ", cost=" + cost +
                 ", status='" + status + '\'' +
                 ", patient=" + patient +
                 ", doctor=" + doctor +
