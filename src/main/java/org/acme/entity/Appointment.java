@@ -1,18 +1,22 @@
 package org.acme.entity;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 
 @Entity
 @Table(name = "appointment")
-public class Appointment extends PanacheEntity {
-    //@Id
+public class Appointment  {
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long app_id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "appointment_seq")
+//    @SequenceGenerator(name = "appointment_seq", sequenceName = "appointment_sequence", allocationSize = 1)
+
     //@Temporal(TemporalType.TIMESTAMP)
     private LocalDate appointmentDate;
     private String slot;
@@ -30,12 +34,12 @@ public class Appointment extends PanacheEntity {
     // Getters and Setters
 
 
-    public long getId() {
-        return id;
+    public long getApp_id() {
+        return app_id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setApp_id(long app_id) {
+        this.app_id = app_id;
     }
 
     public LocalDate getAppointmentDate() {
@@ -89,7 +93,7 @@ public class Appointment extends PanacheEntity {
     @Override
     public String toString() {
         return "Appointment{" +
-                "id=" + id +
+//                "app_id=" + app_id +
                 ", appointmentDate=" + appointmentDate +
                 ", slot='" + slot + '\'' +
                 ", cost=" + cost +

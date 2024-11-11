@@ -1,6 +1,8 @@
 package org.acme.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 
 import java.time.LocalTime;
@@ -10,10 +12,14 @@ import java.util.List;
 
 @Entity
 @Table(name = "doctor")
-public class Doctor extends PanacheEntity {
+public class Doctor {
    // @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+   // @GeneratedValue(strategy = GenerationType.IDENTITY)
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   private long id;
+//   @SequenceGenerator(name = "doctor_seq", sequenceName = "doctor_sequence", allocationSize = 1)
+
     private String name;
     private long phone;
     private String email;
@@ -130,7 +136,7 @@ public class Doctor extends PanacheEntity {
     }
 
 
-
+    @JsonIgnore
     public String getDisplayPhotoBase64() {
         return Base64.getEncoder().encodeToString(dp);
     }

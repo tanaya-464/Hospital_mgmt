@@ -10,8 +10,8 @@
         <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
-        <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
+        <quarkus.platform.artifact-app_id>quarkus-bom</quarkus.platform.artifact-app_id>
+        <quarkus.platform.group-app_id>io.quarkus.platform</quarkus.platform.group-app_id>
         <quarkus.platform.version>3.16.1</quarkus.platform.version>
         <skipITs>true</skipITs>
         <surefire-plugin.version>3.5.0</surefire-plugin.version>
@@ -20,8 +20,8 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>${quarkus.platform.group-id}</groupId>
-                <artifactId>${quarkus.platform.artifact-id}</artifactId>
+                <groupId>${quarkus.platform.group-app_id}</groupId>
+                <artifactId>${quarkus.platform.artifact-app_id}</artifactId>
                 <version>${quarkus.platform.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
@@ -76,12 +76,29 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-jdbc-h2</artifactId> <!-- or your preferred database -->
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.30</version> <!-- Ensure to use the latest version -->
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.30</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+            <version>2.4.2</version>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>${quarkus.platform.group-id}</groupId>
+                <groupId>${quarkus.platform.group-app_id}</groupId>
                 <artifactId>quarkus-maven-plugin</artifactId>
                 <version>${quarkus.platform.version}</version>
                 <extensions>true</extensions>
